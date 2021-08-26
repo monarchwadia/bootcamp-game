@@ -15,6 +15,7 @@ let health = 100;
 let happiness = 30;
 let cash = 10_00;
 let hand = [];
+let discardPile = [];
 
 for(let i = 0; i < 5; i++) {
   const randomCard = deck[0]
@@ -25,11 +26,13 @@ function playCard(card) {
   happiness += card.happiness
   cash += card.cash
   health += card.health
+  hand = hand.filter(c => c !== card)
+  discardPile.push(card)
 }
 
-function discardCard(card) {
-  hand = hand.filter(c => c !== card)
-}
+// function discardCard(card) {
+//   hand = hand.filter(c => c !== card)
+// }
 </script>
 
 <h1>Bootcamp Card Game</h1>
