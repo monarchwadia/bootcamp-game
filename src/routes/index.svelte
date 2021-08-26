@@ -27,7 +27,7 @@ function playCard(card) {
   cash += card.cash
   health += card.health
   hand = hand.filter(c => c !== card)
-  discardPile.push(card)
+  discardPile = [...discardPile, card]
 }
 
 // function discardCard(card) {
@@ -57,6 +57,14 @@ function playCard(card) {
       </div>
     {/each}
   </div>
+  <div class="discard-pile-wrapper">
+    {#each discardPile as card}
+      <div class="card">
+        <div class="label">{card.label}</div>
+        <div class="flavor">{card.flavor}</div>
+      </div>
+    {/each}
+  </div>
 </div>
 <style>
 .wrapper {
@@ -71,11 +79,24 @@ function playCard(card) {
   gap: 30px;
 }
 
-.card {
+.hand-wrapper .card {
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(97, 77, 64);
   width: 150px;
   height: 200px;
+}
+
+.discard-pile-wrapper {
+  display: flex;
+  flex-direction: row ;
+}
+.discard-pile-wrapper .card {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(97, 77, 64);
+  width: 75px;
+  height: 100px;
 }
 </style>
