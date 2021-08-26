@@ -8,7 +8,8 @@ const deck = [
   }
 ];
 
-let happiness = 100;
+let health = 100;
+let happiness = 30;
 let cash = 10_00;
 let hand = [];
 
@@ -17,6 +18,11 @@ for(let i = 0; i < 5; i++) {
   hand.push(randomCard)
 }
 
+function playCard(card) {
+  happiness += card.happiness
+  cash += card.cash
+  health += card.health
+}
 </script>
 
 <h1>Bootcamp Card Game</h1>
@@ -29,7 +35,7 @@ for(let i = 0; i < 5; i++) {
   </div>
   <div>
     {#each hand as handCard}
-      <div>{handCard.label}</div>
+      <div on:click={() => playCard(handCard)}>{handCard.label}</div>
     {/each}
   </div>
 </div>
