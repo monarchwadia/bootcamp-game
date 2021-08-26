@@ -1,10 +1,13 @@
 <script>
+const COST_TO_DISCARD = -1; // happiness
+
 const deck = [
   {
     label: "Ate junk food",
     happiness: 1,
     cash: -1_00,
-    health: -1
+    health: -1,
+    flavor: "You just couldn't resist, could you?"
   }
 ];
 
@@ -15,13 +18,17 @@ let hand = [];
 
 for(let i = 0; i < 5; i++) {
   const randomCard = deck[0]
-  hand.push(randomCard)
+  hand.push({...randomCard})
 }
 
 function playCard(card) {
   happiness += card.happiness
   cash += card.cash
   health += card.health
+}
+
+function discardCard(card) {
+  hand = hand.filter(c => c !== card)
 }
 </script>
 
@@ -33,9 +40,18 @@ function playCard(card) {
     {happiness}
     {cash}
   </div>
-  <div>
-    {#each hand as handCard}
-      <div on:click={() => playCard(handCard)}>{handCard.label}</div>
+  <div class="hand-wrapper">
+    {#each hand as card}
+      <div on:click={() => playCard(card)} class="card">
+        <div class="label">{card.label}</div>
+        <div class="description"></div>
+        <div class="costs">
+          <div class="health">Health: {card.health}</div>
+          <div class="happiness">Happiness: {card.happiness}</div>
+          <div class="cash">Cash: {card.cash} ¢</div>
+          <div class="flavor">{card.flavor}</div>
+        </div>
+      </div>
     {/each}
   </div>
 </div>
@@ -44,5 +60,19 @@ function playCard(card) {
   /* background-color: black; */
   display: flex;
   flex-direction: column;
+}
+
+.hand-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(97, 77, 64);
+  width: 150px;
+  height: 200px;
 }
 </style>
