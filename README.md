@@ -1,3 +1,9 @@
+# Bootcamp game
+
+Developed for a Twitch session at Mintbean.
+
+Deployed version [is here](https://hopeful-hodgkin-43e6a1.netlify.app/)
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
